@@ -2,111 +2,261 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Simo's Website</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Pacifico&display=swap" rel="stylesheet">
+
+<!-- Particles.js -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
 <style>
-body{
-  margin:0;
-  font-family:Inter,sans-serif;
-  background:#0a0f17;
-  color:#e5e7eb;
+:root {
+  --bg-main: #0a0f17;
+  --bg-glass: rgba(255,255,255,0.06);
+  --accent-cyan: #00ffff;
+  --accent-warm: #f39c12;
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --border-glass: rgba(255,255,255,0.12);
+  --radius: 18px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family:'Inter',sans-serif;
+  min-height:100vh;
+  background: radial-gradient(circle at top, #101826, #06080d);
+  color: var(--text-main);
+  overflow-x:hidden;
+  scroll-behavior: smooth;
   opacity:0;
-  animation:fadeIn .6s forwards;
+  animation: pageFadeIn 0.7s ease forwards;
 }
-.fade-out{animation:fadeOut .4s forwards}
-@keyframes fadeIn{to{opacity:1}}
-@keyframes fadeOut{to{opacity:0}}
 
-header{
-  text-align:center;
-  padding:30px;
-  border-bottom:1px solid rgba(255,255,255,.1);
+.fade-out { animation: pageFadeOut 0.4s ease forwards; }
+
+@keyframes pageFadeIn {
+  from { opacity:0; transform:translateY(6px); }
+  to { opacity:1; transform:translateY(0); }
 }
-header a{
-  margin:0 14px;
-  color:#9ca3af;
+
+@keyframes pageFadeOut { from{opacity:1} to{opacity:0} }
+
+#particles-js { position:fixed; inset:0; z-index:-1; }
+
+header.navbar {
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:16px 40px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  backdrop-filter:blur(12px);
+  background: rgba(10,15,23,0.65);
+  border-bottom:1px solid var(--border-glass);
+  z-index:100;
+}
+
+header .logo {
+  font-family:'Pacifico', cursive;
+  font-size:1.6rem;
+  color: var(--accent-cyan);
+}
+
+header nav { display:flex; gap:18px; }
+
+header nav a {
   text-decoration:none;
+  color: var(--text-muted);
+  padding:6px 12px;
+  border-radius:8px;
+  transition:0.3s;
+  font-weight:500;
 }
-header a:hover{color:#00ffff}
 
-h1{text-align:center;margin:60px 0}
+header nav a:hover {
+  color: var(--accent-cyan);
+  background: rgba(0,255,255,0.08);
+  box-shadow:0 0 15px rgba(0,255,255,0.25);
+}
 
-.grid{
+.hero-section {
+  padding:180px 20px 60px;
+  text-align:center;
+  max-width:900px;
+  margin:auto;
+}
+
+.hero-section h1 {
+  font-size:3rem;
+  font-weight:800;
+  margin-bottom:20px;
+}
+
+.hero-section h1 span { color:var(--accent-cyan); }
+
+.hero-section p {
+  color: var(--text-muted);
+  font-size:1.1rem;
+  line-height:1.6;
+  margin-bottom:40px;
+}
+
+.project-grid {
   max-width:1200px;
   margin:auto;
-  padding:40px;
+  padding:40px 20px;
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
   gap:30px;
 }
-.project{
-  background:rgba(255,255,255,.05);
-  border-radius:20px;
+
+.project-card {
+  background: var(--bg-glass);
+  border:1px solid var(--border-glass);
+  border-radius: var(--radius);
   overflow:hidden;
-  transition:.4s;
+  transition:0.4s ease;
+  backdrop-filter:blur(10px);
+  cursor:pointer;
+  opacity:0;
+  transform:translateY(30px);
 }
-.project:hover{
+
+.project-card.active { opacity:1; transform:translateY(0); }
+
+.project-card:hover {
   transform:translateY(-10px);
-  box-shadow:0 0 40px rgba(0,255,255,.2);
+  box-shadow:0 0 40px rgba(0,255,255,0.2);
 }
-.project img{
+
+.project-card img {
   width:100%;
   display:block;
 }
-.project .info{
+
+.project-info {
   padding:20px;
 }
-.project h3{margin-bottom:10px;color:#f39c12}
-.project p{color:#9ca3af}
+
+.project-info h3 { color: var(--accent-warm); margin-bottom:10px; }
+
+.project-info p { color: var(--text-muted); line-height:1.5; }
+
+footer {
+  text-align:center;
+  padding:40px;
+  color: var(--text-muted);
+  border-top:1px solid var(--border-glass);
+  margin-top:60px;
+}
+
+/* CTA Button in hero */
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-cyan), #00bcd4);
+  color: #001014;
+  padding:14px 32px;
+  border-radius:12px;
+  font-weight:700;
+  text-decoration:none;
+  transition:0.3s ease;
+  margin:0 8px;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow:0 0 35px rgba(0,255,255,0.5);
+}
+
+/* Animations */
+@media(max-width:768px){ 
+  .hero-section h1{font-size:2.4rem;}
+  header.navbar{padding:16px 20px;}
+  .project-grid{gap:20px;}
+}
 </style>
 </head>
 
 <body>
 
-<header>
-  <a href="index.html">Home</a>
-  <a href="services.html">Services</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
+<div id="particles-js"></div>
+
+<header class="navbar">
+  <div class="logo">Simo</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="services.html">Services</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 </header>
 
-<h1>My Work</h1>
+<section class="hero-section">
+  <h1>My <span>Portfolio</span></h1>
+  <p>Some of my recent projects showing modern UI, animations, and responsive design.</p>
+  <a href="contact.html" class="btn-primary">Contact Me</a>
+</section>
 
-<section class="grid">
-  <div class="project">
-    <img src="https://via.placeholder.com/600x400">
-    <div class="info">
+<section class="project-grid">
+  <div class="project-card reveal">
+    <img src="https://via.placeholder.com/600x400" alt="Project One">
+    <div class="project-info">
       <h3>Project One</h3>
-      <p>Modern UI with animations.</p>
+      <p>Modern UI with animations and interactive hover effects.</p>
     </div>
   </div>
-  <div class="project">
-    <img src="https://via.placeholder.com/600x400">
-    <div class="info">
+  <div class="project-card reveal">
+    <img src="https://via.placeholder.com/600x400" alt="Project Two">
+    <div class="project-info">
       <h3>Project Two</h3>
-      <p>Dark themed landing page.</p>
+      <p>Dark themed landing page with glass effects and gradients.</p>
     </div>
   </div>
-  <div class="project">
-    <img src="https://via.placeholder.com/600x400">
-    <div class="info">
+  <div class="project-card reveal">
+    <img src="https://via.placeholder.com/600x400" alt="Project Three">
+    <div class="project-info">
       <h3>Project Three</h3>
-      <p>Interactive portfolio concept.</p>
+      <p>Interactive portfolio concept with smooth transitions.</p>
     </div>
   </div>
 </section>
 
+<footer>
+  © 2026 Simo — All rights reserved
+</footer>
+
 <script>
-document.querySelectorAll("a").forEach(a=>{
-  a.onclick=e=>{
+/* PARTICLES */
+particlesJS("particles-js",{
+  particles:{number:{value:80},color:{value:["#00ffff","#f39c12"]},
+    opacity:{value:0.6},size:{value:3},line_linked:{enable:true,color:"#00ffff",opacity:0.2},move:{speed:2}
+  },
+});
+
+/* REVEAL ANIMATION */
+const reveals = document.querySelectorAll(".reveal");
+window.addEventListener("scroll",()=>{
+  reveals.forEach(el=>{
+    const top=el.getBoundingClientRect().top;
+    if(top<window.innerHeight-80) el.classList.add("active");
+  });
+});
+
+/* PAGE TRANSITION */
+document.querySelectorAll("a").forEach(link=>{
+  link.addEventListener("click",e=>{
+    const href=link.getAttribute("href");
+    if(!href||href.startsWith("#")) return;
     e.preventDefault();
     document.body.classList.add("fade-out");
-    setTimeout(()=>location.href=a.href,400);
-  }
+    setTimeout(()=>window.location.href=href,400);
+  });
 });
 </script>
-
 </body>
 </html>
