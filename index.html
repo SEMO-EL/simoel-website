@@ -12,15 +12,12 @@
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
 <style>
-
-/* =====================
-   RESET + VARIABLES
-===================== */
+/* ===================== RESET + VARIABLES ===================== */
 :root {
   --bg-main: #0a0f17;
-  --bg-glass: rgba(255,255,255,0.06);
+  --bg-glass: rgba(255,255,255,0.05);
   --accent: #00ffff;
-  --accent-warm: #f39c12;
+  --accent-warm: #ff6b6b;
   --text-main: #e5e7eb;
   --text-muted: #9ca3af;
   --border-glass: rgba(255,255,255,0.12);
@@ -38,11 +35,9 @@ html {
 
 body {
   min-height: 100vh;
-  background: radial-gradient(circle at top, #101826, #06080d);
+  background: linear-gradient(135deg,#0a0f17,#06080d);
   color: var(--text-main);
   font-family: 'Inter', sans-serif;
-
-  /* PAGE LOAD ANIMATION */
   opacity: 0;
   animation: pageFadeIn 0.7s ease forwards;
 }
@@ -51,28 +46,24 @@ body {
   animation: pageFadeOut 0.4s ease forwards;
 }
 
+/* ===================== PAGE ANIMATIONS ===================== */
 @keyframes pageFadeIn {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes pageFadeOut {
   from { opacity: 1; }
   to { opacity: 0; }
 }
 
-/* =====================
-   PARTICLES BACKGROUND
-===================== */
+/* ===================== PARTICLES BACKGROUND ===================== */
 #particles-js {
   position: fixed;
   inset: 0;
   z-index: -1;
 }
 
-/* =====================
-   NAVBAR
-===================== */
+/* ===================== NAVBAR ===================== */
 .navbar {
   position: fixed;
   top: 0;
@@ -85,208 +76,184 @@ body {
   background: rgba(10,15,23,0.65);
   border-bottom: 1px solid var(--border-glass);
   z-index: 100;
+  transition: background 0.3s;
 }
+.navbar:hover { background: rgba(10,15,23,0.8); }
 
 .navbar .logo {
   font-family: 'Pacifico', cursive;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   color: var(--accent);
+  text-shadow: 0 0 10px var(--accent);
 }
 
 .navbar nav {
   display: flex;
-  gap: 18px;
+  gap: 20px;
 }
-
 .navbar a {
   text-decoration: none;
   color: var(--text-muted);
   padding: 8px 14px;
   border-radius: 8px;
+  font-weight: 600;
   transition: 0.3s ease;
-  font-weight: 500;
 }
-
 .navbar a:hover {
   color: var(--accent);
   background: rgba(0,255,255,0.08);
-  box-shadow: 0 0 15px rgba(0,255,255,0.25);
+  box-shadow: 0 0 20px rgba(0,255,255,0.25);
 }
 
-/* =====================
-   HERO SECTION
-===================== */
+/* ===================== HERO SECTION ===================== */
 .hero {
-  padding: 160px 20px 120px;
+  padding: 180px 20px 140px;
   text-align: center;
   max-width: 900px;
   margin: auto;
 }
-
 .hero h1 {
-  font-size: 3.2rem;
-  margin-bottom: 20px;
+  font-size: 3.4rem;
   font-weight: 800;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg,var(--accent),var(--accent-warm));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textGlow 2s ease infinite alternate;
 }
-
-.hero h1 span {
-  color: var(--accent);
+@keyframes textGlow {
+  from { text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent-warm); }
+  to { text-shadow: 0 0 20px var(--accent), 0 0 40px var(--accent-warm); }
 }
-
 .hero p {
   color: var(--text-muted);
-  font-size: 1.1rem;
-  line-height: 1.7;
-  margin-bottom: 40px;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 50px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero-buttons {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 22px;
   flex-wrap: wrap;
 }
-
 .btn-primary {
-  background: linear-gradient(135deg, #00ffff, #00bcd4);
+  background: linear-gradient(135deg, var(--accent), var(--accent-warm));
   color: #001014;
-  padding: 14px 32px;
-  border-radius: 12px;
+  padding: 16px 36px;
+  border-radius: 14px;
   font-weight: 700;
   text-decoration: none;
   transition: 0.3s ease;
+  box-shadow: 0 0 20px rgba(0,255,255,0.4);
 }
-
 .btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 35px rgba(0,255,255,0.5);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 0 35px rgba(0,255,255,0.6),0 0 50px rgba(255,107,107,0.5);
 }
-
 .btn-secondary {
   border: 1px solid var(--border-glass);
   color: var(--text-main);
-  padding: 14px 32px;
-  border-radius: 12px;
+  padding: 16px 36px;
+  border-radius: 14px;
   text-decoration: none;
   transition: 0.3s ease;
 }
-
 .btn-secondary:hover {
   background: var(--bg-glass);
   color: var(--accent);
 }
 
-/* =====================
-   FEATURE GRID
-===================== */
+/* ===================== FEATURE GRID ===================== */
 .section {
   padding: 120px 40px;
   max-width: 1200px;
   margin: auto;
 }
-
 .section-title {
   text-align: center;
   margin-bottom: 60px;
 }
-
 .section-title h2 {
-  font-size: 2.4rem;
+  font-size: 2.6rem;
 }
-
-.section-title p {
-  color: var(--text-muted);
-  margin-top: 12px;
-}
+.section-title p { color: var(--text-muted); margin-top: 12px; }
 
 .features {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
   gap: 30px;
 }
-
 .feature-card {
   background: var(--bg-glass);
   border: 1px solid var(--border-glass);
-  padding: 30px;
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
+  padding: 32px;
+  border-radius: 22px;
+  backdrop-filter: blur(14px);
   transition: 0.4s ease;
-}
-
-.feature-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 40px rgba(0,255,255,0.18);
-}
-
-.feature-card h3 {
-  margin-bottom: 14px;
-  color: var(--accent-warm);
-}
-
-.feature-card p {
-  color: var(--text-muted);
-  line-height: 1.6;
-}
-
-/* =====================
-   CTA SECTION
-===================== */
-.cta {
-  text-align: center;
-  padding: 120px 20px;
-  background: linear-gradient(180deg, transparent, rgba(0,255,255,0.05));
-}
-
-.cta h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-}
-
-.cta p {
-  color: var(--text-muted);
-  margin-bottom: 40px;
-}
-
-/* =====================
-   FOOTER
-===================== */
-footer {
-  text-align: center;
-  padding: 40px;
-  color: var(--text-muted);
-  border-top: 1px solid var(--border-glass);
-}
-
-/* =====================
-   SCROLL REVEAL
-===================== */
-.reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: 0.8s ease;
+  transform: translateY(40px);
 }
-
-.reveal.active {
+.feature-card.active {
   opacity: 1;
   transform: translateY(0);
 }
-
-/* =====================
-   RESPONSIVE
-===================== */
-@media (max-width: 768px) {
-  .hero h1 { font-size: 2.4rem; }
-  .navbar { padding: 16px 20px; }
+.feature-card:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 0 45px rgba(0,255,255,0.25),0 0 25px rgba(255,107,107,0.15);
 }
+.feature-card h3 { margin-bottom: 16px; color: var(--accent-warm); }
+.feature-card p { color: var(--text-muted); line-height: 1.7; }
+
+/* ===================== CTA SECTION ===================== */
+.cta {
+  text-align: center;
+  padding: 140px 20px;
+  background: linear-gradient(180deg,transparent,rgba(0,255,255,0.05));
+}
+.cta h2 {
+  font-size: 2.6rem;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg,var(--accent),var(--accent-warm));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.cta p { color: var(--text-muted); margin-bottom: 45px; }
+.cta .btn-primary { padding: 18px 40px; }
+
+/* ===================== FOOTER ===================== */
+footer {
+  text-align: center;
+  padding: 48px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-glass);
+  font-size: 0.95rem;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2.6rem; }
+  .navbar { padding: 16px 20px; }
+  .cta h2 { font-size: 2rem; }
+}
+
+/* ===================== SCROLL REVEAL ===================== */
+.reveal { opacity:0; transform: translateY(40px); transition:0.8s ease; }
+.reveal.active { opacity:1; transform:translateY(0); }
 
 </style>
 </head>
 
 <body>
 
+<!-- PARTICLES BACKGROUND -->
 <div id="particles-js"></div>
 
+<!-- NAVBAR -->
 <header class="navbar">
   <div class="logo">Simo</div>
   <nav>
@@ -298,18 +265,17 @@ footer {
   </nav>
 </header>
 
+<!-- HERO SECTION -->
 <section class="hero reveal">
   <h1>Building <span>Modern</span> & Animated Websites</h1>
-  <p>
-    A dark-themed, high-end web experience with smooth animations,
-    glass effects, and professional structure.
-  </p>
+  <p>A dark-themed, high-end web experience with smooth animations, glass effects, and professional structure.</p>
   <div class="hero-buttons">
     <a href="portfolio.html" class="btn-primary">View Portfolio</a>
     <a href="contact.html" class="btn-secondary">Contact Me</a>
   </div>
 </section>
 
+<!-- FEATURE GRID -->
 <section class="section">
   <div class="section-title reveal">
     <h2>What I Focus On</h2>
@@ -332,51 +298,65 @@ footer {
   </div>
 </section>
 
+<!-- CTA SECTION -->
 <section class="cta reveal">
   <h2>Ready to Build Something Cool?</h2>
   <p>Explore the rest of the website or get in touch.</p>
   <a href="contact.html" class="btn-primary">Start a Project</a>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  © 2025 Simo — All rights reserved
+  © 2026 Simo — All rights reserved
 </footer>
 
-<!-- PARTICLES CONFIG -->
+<!-- ===================== PARTICLES.JS ===================== -->
 <script>
 particlesJS("particles-js", {
   particles: {
-    number: { value: 80 },
-    color: { value: ["#00ffff","#f39c12"] },
-    opacity: { value: 0.6 },
-    size: { value: 3 },
-    line_linked: {
-      enable: true,
-      color: "#00ffff",
-      opacity: 0.2
+    number: { value: 90, density: { enable: true, value_area: 900 } },
+    color: { value: ["#00ffff","#ff6b6b","#f39c12"] },
+    shape: { type: "circle" },
+    opacity: { value: 0.7, random: true },
+    size: { value: 3, random: true },
+    line_linked: { enable: true, distance: 140, color: "#00ffff", opacity: 0.2, width: 1 },
+    move: { enable: true, speed: 2.5, direction: "none", random: true, straight: false, bounce: false }
+  },
+  interactivity: {
+    detect_on: "canvas",
+    events: {
+      onhover: { enable: true, mode: "repulse" },
+      onclick: { enable: true, mode: "push" }
     },
-    move: { speed: 2 }
-  }
+    modes: { repulse: { distance: 120 }, push: { particles_nb: 4 } }
+  },
+  retina_detect: true
 });
 </script>
 
-<!-- SCROLL REVEAL -->
+<!-- ===================== SCROLL REVEAL ===================== -->
 <script>
 const reveals = document.querySelectorAll(".reveal");
 window.addEventListener("scroll", () => {
   reveals.forEach(el => {
     const top = el.getBoundingClientRect().top;
-    if (top < window.innerHeight - 80) el.classList.add("active");
+    if(top < window.innerHeight - 80) el.classList.add("active");
   });
+});
+
+// stagger feature card reveal
+const featureCards = document.querySelectorAll(".feature-card");
+featureCards.forEach((card,i) => {
+  setTimeout(() => card.classList.add("active"), 300*i + 300);
 });
 </script>
 
-<!-- PAGE TRANSITION -->
+<!-- ===================== PAGE TRANSITION ===================== -->
 <script>
 document.querySelectorAll("a").forEach(link => {
   link.addEventListener("click", e => {
     const href = link.getAttribute("href");
-    if (!href || href.startsWith("#")) return;
+    if(!href || href.startsWith("#")) return;
     e.preventDefault();
     document.body.classList.add("fade-out");
     setTimeout(() => window.location.href = href, 400);
