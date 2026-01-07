@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  font-family:Inter,sans-serif;
+  background:#0a0f17;
+  color:#e5e7eb;
+  opacity:0;
+  animation:fadeIn .6s forwards;
+}
+.fade-out{animation:fadeOut .4s forwards}
+@keyframes fadeIn{to{opacity:1}}
+@keyframes fadeOut{to{opacity:0}}
+
+header{
+  text-align:center;
+  padding:30px;
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+header a{
+  margin:0 14px;
+  color:#9ca3af;
+  text-decoration:none;
+}
+header a:hover{color:#00ffff}
+
+h1{text-align:center;margin:60px 0}
+
+.grid{
+  max-width:1200px;
+  margin:auto;
+  padding:40px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+}
+.project{
+  background:rgba(255,255,255,.05);
+  border-radius:20px;
+  overflow:hidden;
+  transition:.4s;
+}
+.project:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 40px rgba(0,255,255,.2);
+}
+.project img{
+  width:100%;
+  display:block;
+}
+.project .info{
+  padding:20px;
+}
+.project h3{margin-bottom:10px;color:#f39c12}
+.project p{color:#9ca3af}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</header>
+
+<h1>My Work</h1>
+
+<section class="grid">
+  <div class="project">
+    <img src="https://via.placeholder.com/600x400">
+    <div class="info">
+      <h3>Project One</h3>
+      <p>Modern UI with animations.</p>
+    </div>
+  </div>
+  <div class="project">
+    <img src="https://via.placeholder.com/600x400">
+    <div class="info">
+      <h3>Project Two</h3>
+      <p>Dark themed landing page.</p>
+    </div>
+  </div>
+  <div class="project">
+    <img src="https://via.placeholder.com/600x400">
+    <div class="info">
+      <h3>Project Three</h3>
+      <p>Interactive portfolio concept.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+document.querySelectorAll("a").forEach(a=>{
+  a.onclick=e=>{
+    e.preventDefault();
+    document.body.classList.add("fade-out");
+    setTimeout(()=>location.href=a.href,400);
+  }
+});
+</script>
+
+</body>
+</html>

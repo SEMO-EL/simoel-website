@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact — Simo's Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ===== STYLE ===== -->
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card: #12182b;
+      --accent: #5ddcff;
+      --accent-2: #c77dff;
+      --text: #e6e9f0;
+      --muted: #9aa4bf;
+      --radius: 16px;
+      --transition: 0.4s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Inter", system-ui, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #10162f, var(--bg));
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* ===== NAVBAR ===== */
+    header {
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: var(--muted);
+      transition: var(--transition);
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    /* ===== MAIN ===== */
+    main {
+      flex: 1;
+      display: grid;
+      place-items: center;
+      padding: 40px 20px;
+    }
+
+    .contact-card {
+      width: 100%;
+      max-width: 600px;
+      background: linear-gradient(180deg, #141a33, var(--card));
+      border-radius: var(--radius);
+      padding: 40px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .contact-card h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .contact-card p {
+      color: var(--muted);
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    /* ===== FORM ===== */
+    form {
+      display: grid;
+      gap: 18px;
+    }
+
+    label {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 14px 16px;
+      background: #0e1430;
+      border: 1px solid #1f2750;
+      border-radius: 12px;
+      color: var(--text);
+      outline: none;
+      transition: var(--transition);
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(93, 220, 255, 0.2);
+    }
+
+    textarea {
+      resize: none;
+      min-height: 120px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 14px;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color: #000;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(93, 220, 255, 0.4);
+    }
+
+    /* ===== STATUS ===== */
+    .status {
+      margin-top: 15px;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .status.success {
+      color: #7dffb3;
+    }
+
+    .status.error {
+      color: #ff7d7d;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ===== HEADER ===== -->
+  <header>
+    <h1>Simo's Website</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ===== MAIN ===== -->
+  <main>
+    <div class="contact-card">
+      <h2>Contact Me</h2>
+      <p>
+        Have a project, idea, or question?  
+        Fill out the form below and I’ll get back to you.
+      </p>
+
+      <!-- FORM SUBMIT -->
+      <form id="contactForm">
+        <div>
+          <label>Name</label>
+          <input type="text" name="name" required />
+        </div>
+
+        <div>
+          <label>Email</label>
+          <input type="email" name="email" required />
+        </div>
+
+        <div>
+          <label>Message</label>
+          <textarea name="message" required></textarea>
+        </div>
+
+        <button type="submit">Send Message</button>
+        <div class="status success">Message sent successfully ✔</div>
+        <div class="status error">Something went wrong. Try again.</div>
+      </form>
+    </div>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    © 2026 Simo — All rights reserved
+  </footer>
+
+  <!-- ===== SCRIPT ===== -->
+  <script>
+    const form = document.getElementById("contactForm");
+    const success = document.querySelector(".status.success");
+    const error = document.querySelector(".status.error");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      success.style.display = "none";
+      error.style.display = "none";
+
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch("https://formsubmit.co/ajax/elomaris310@gmail.com", {
+          method: "POST",
+          headers: {
+            "Accept": "application/json"
+          },
+          body: formData
+        });
+
+        if (response.ok) {
+          success.style.display = "block";
+          form.reset();
+        } else {
+          error.style.display = "block";
+        }
+      } catch {
+        error.style.display = "block";
+      }
+    });
+  </script>
+</body>
+</html>

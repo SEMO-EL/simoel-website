@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Me | Simo</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0a0f17;
+  --glass:rgba(255,255,255,.06);
+  --border:rgba(255,255,255,.12);
+  --accent:#00ffff;
+  --text:#e5e7eb;
+  --muted:#9ca3af;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:Inter,sans-serif;
+  background:radial-gradient(circle at top,#101826,#06080d);
+  color:var(--text);
+  opacity:0;
+  animation:fadeIn .6s forwards;
+}
+
+.fade-out{animation:fadeOut .4s forwards}
+@keyframes fadeIn{to{opacity:1}}
+@keyframes fadeOut{to{opacity:0}}
+
+header{
+  backdrop-filter:blur(14px);
+  background:rgba(10,15,23,.65);
+  border-bottom:1px solid var(--border);
+}
+
+nav{
+  display:flex;
+  justify-content:center;
+  gap:26px;
+  padding:18px;
+}
+
+nav a{
+  color:var(--muted);
+  text-decoration:none;
+  padding:8px 14px;
+  border-radius:8px;
+  transition:.3s;
+}
+
+nav a:hover{
+  color:var(--accent);
+  background:rgba(0,255,255,.08);
+}
+
+.hero{
+  padding:100px 20px 60px;
+  text-align:center;
+}
+
+.hero h1{
+  font-size:3rem;
+  margin-bottom:20px;
+}
+
+.hero p{
+  max-width:700px;
+  margin:auto;
+  color:var(--muted);
+  line-height:1.8;
+}
+
+.section{
+  max-width:900px;
+  margin:auto;
+  padding:80px 30px;
+}
+
+.box{
+  background:var(--glass);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:40px;
+}
+
+.box h2{
+  margin-bottom:20px;
+  color:var(--accent);
+}
+
+.box p{
+  color:var(--muted);
+  line-height:1.8;
+}
+
+footer{
+  text-align:center;
+  padding:40px;
+  border-top:1px solid var(--border);
+  color:var(--muted);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>About Me</h1>
+  <p>
+    I’m Simo — focused on building modern, animated, and scalable websites
+    with clean structure and strong visual identity.
+  </p>
+</section>
+
+<section class="section">
+  <div class="box">
+    <h2>My Approach</h2>
+    <p>
+      I care about clarity, smooth motion, and design that feels intentional.
+      Every section, animation, and interaction is built to feel natural
+      and professional.
+    </p>
+    <p style="margin-top:20px">
+      This site itself is part of my portfolio — designed to evolve as new
+      features and projects are added.
+    </p>
+  </div>
+</section>
+
+<footer>© 2025 Simo</footer>
+
+<script>
+document.querySelectorAll("a").forEach(a=>{
+  a.onclick=e=>{
+    e.preventDefault();
+    document.body.classList.add("fade-out");
+    setTimeout(()=>location.href=a.href,400);
+  };
+});
+</script>
+
+</body>
+</html>
